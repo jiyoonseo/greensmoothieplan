@@ -1,0 +1,170 @@
+<!-- nav:: when the screen size is bigger than md (medium) -->
+<nav  ng-controller="gsNavCtrl" class="navbar navbar-default navbar-fixed-top" ng-cloak  show-gt-md hide-xs hide-sm  >
+    <!-- bigger than small, show this navbar on top -->
+
+
+    <md-content layout="column" class="">
+        <!--<a href="/" style="text-decoration:none; color:#689F38;"><h2> Green Smoothie Plan</h2></a>-->
+        <div layout="row" layout-fill layout-align="center center">
+
+            <a href="/" layout-padding style="text-decoration: none; color:#689F38;"><h4>GreenSmoothiePlan</h4></a>
+
+            <span flex></span>
+            <md-button ng-repeat="link in links" ng-click="navBarButton(link.href)" layout="row" style="padding: 0; " aria-label="{{link.name}}">
+                <!--<ng-md-icon icon="{{link.icon}}" style=" vertical-align: middle; line-height: 1;"></ng-md-icon>-->
+                <span style="color:#689F38;" style="margin: 0; padding: 0;"> {{link.name}} </span>
+
+            </md-button>
+
+
+            <!-- menu of User Account (Button: Avatar) -->
+            <md-menu-bar >
+                <md-menu >
+                    <!-- md-menu origin (Avartar) -> onClick -> show dropdown menu of User Info -->
+                    <button class="md-button md-fab md-mini md-primary md-icon-button" aria-label="User"
+                            ng-click="openUserMenu($mdOpenMenu, $event)">
+                        <ng-md-icon icon="person" style="fill: white; vertical-align: middle; line-height: 1;"></ng-md-icon>
+                    </button>
+
+                    <md-menu-content width="4" style="margin-top: 1rem;" >
+
+                        <!-- After user logged in -->
+                        <md-menu-item  ng-if="currentUser">
+                            <div layout="row" layout-align="end center">
+                                {{currentUser.firstname}} {{currentUser.lastname}}
+                                <div flex> </div>
+                                <button type="submit" class="btn btn-default">Log Out</button>
+                            </div>
+                        </md-menu-item>
+
+
+                        <!-- before user login -->
+                        <md-menu-item ng-if="!currentUser" layout-margin>
+                            <div layout="row" layout-align="center center">
+                                <md-button ng-href="/login">Log In</md-button>
+                            </div>
+                        </md-menu-item>
+
+
+                        <md-menu-divider></md-menu-divider>
+
+
+
+                        <md-menu-item>
+                            <button class="md-button md-primary" aria-label="My Account" ng-click="userAccount()" >My Account?</button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <button class="md-button md-primary" aria-label="testButton" ng-click="t1()">Test</button>
+                        </md-menu-item>
+
+
+                    </md-menu-content>
+
+
+
+                </md-menu>
+
+            </md-menu-bar>
+
+
+
+
+        </div>
+    </md-content>
+</nav>
+
+
+<!-- Mobile version  -->
+<!-- nav:: when the screen size is smaller than md (medium) -->
+<nav ng-controller="gsNavCtrl" class="ng-cloak" hide-gt-md>
+
+    <div>
+        <div>
+            <md-sidenav class="md-sidenav-left " md-component-id="left" >
+                <md-toolbar layout="row" layout-align="center center">
+                    <div flex="80">
+                        <h1 class="md-toolbar-tools" style="color: #fff;">Green Smoothie Plan</h1>
+                    </div>
+                    <div flex="20"  ng-click="openLeftMenu()" >
+                        <md-button class="md-icon-button "aria-label="close menu">
+                            <ng-md-icon icon="close" style="fill:white; vertical-align: middle; line-height: 1;"></ng-md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+
+                <!--  INSIDE OF NAV PANEL  -->
+                <md-content layout="row"   >
+
+                    <!-- list of menu items.. -->
+                    <md-list layout="column" layout-fill >
+
+                        <md-button ng-href="" ng-click="navButton(link.href)" layout="column" ng-repeat="link in links" class="md-primary">
+                            <md-list-item layout="row" layout-fill>
+                                <div flex="20" layout="row" layout-align="center center" layout-fill>
+                                    <ng-md-icon icon="{{link.icon}}" style=" vertical-align: middle; line-height: 1;"></ng-md-icon>
+                                </div>
+                                <div flex="80" layout="row" layout-align="start" layout-fill>
+                                    {{link.name}}
+                                </div>
+                            </md-list-item>
+                        </md-button>
+
+
+                        <!-- LOGIN BUTTON -->
+                        <md-button ng-if="!currentUser"
+                                   ng-href="" ng-click="navButton('/login')"
+                                   class="md-raised md-primary" layout="column">
+                            <md-list-item layout="row" layout-fill >
+                                <div flex="20" layout="row" layout-align="center center" layout-fill>
+                                    <ng-md-icon icon="person" style="fill: white; vertical-align: middle; line-height: 1;"></ng-md-icon>
+                                </div>
+                                <div flex="80" layout="row" layout-align="start" layout-fill >Log In</div>
+                            </md-list-item>
+                        </md-button>
+
+
+
+                        <!-- card with info w/ followings:
+                            1. User's name (firstname + lastname)
+                            2. Username (email)
+                            3. Button of 'MyAccount'
+                            4. Button of 'Log Out'
+                            5. Character (Avartar)
+                          -->
+                        <md-card ng-if="currentUser" style="background-color: #DCEDC8;">
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{currentUser.firstname}} {{currentUser.lastname}}</span>
+                                    <span class="md-subhead">{{currentUser.username}}</span>
+                                </md-card-title-text>
+                                <md-card-title-media style="background: #efefef;">
+                                    <div class="md-media-sm card-media">
+                                        <ng-md-icon icon="person" style="vertical-align: middle; line-height: 1;" size="80"></ng-md-icon>
+                                    </div>
+                                </md-card-title-media>
+                            </md-card-title>
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button class="md-primary " ng-click="userAccount()">My Account</md-button>
+                                <md-button class="md-primary " ng-click="logout()">Log Out</md-button>
+                            </md-card-actions>
+
+                        </md-card>
+
+
+
+                    </md-list>
+
+
+
+                </md-content>
+            </md-sidenav>
+
+            <!-- This button below is to show Round-Button on Top-Left-Corner  (///)BUTTON DON'T REMOVE!!!! -->
+            <md-button id = 'gsNav' aria-label="menu" class="md-fab md-primary" ng-click="openLeftMenu()" hide-gt-md>
+                <md-icon ><ng-md-icon icon="menu" style="fill: white; vertical-align: middle; line-height: 1;" ></ng-md-icon></md-icon>
+            </md-button>
+
+        </div>
+    </div>
+</nav>
+

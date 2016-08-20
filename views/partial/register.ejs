@@ -1,0 +1,54 @@
+<md-content ng-controller="register" layout="column" layout-fill class="md-inline-form">
+    <h2> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+
+    <form ng-submit="register(user)"  layout-padding layout-margin>
+
+        <md-input-container class="md-block " >
+            <!-- Use floating label instead of placeholder -->
+            <label >First Name</label>
+            <md-icon><ng-md-icon icon="person" ></ng-md-icon></md-icon>
+            <input ng-model="user.fname" type="text" ng-required="true">
+        </md-input-container>
+        <md-input-container class="md-block " >
+            <!-- Use floating label instead of placeholder -->
+            <label >Last Name</label>
+            <md-icon><ng-md-icon icon="person" ></ng-md-icon></md-icon>
+            <input ng-model="user.lname" type="text" ng-required="true">
+        </md-input-container>
+
+
+        <md-input-container class="md-block" >
+            <!-- Use floating placeholder instead of label -->
+            <md-icon> <ng-md-icon icon="email" ></ng-md-icon> </md-icon>
+            <input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
+        </md-input-container>
+
+
+
+        <md-input-container class="md-block">
+            <label>Password</label>
+            <md-icon><ng-md-icon icon="keyboard_control" ></ng-md-icon></md-icon>
+            <input ng-model="user.password" type="password" ng-required="true">
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <md-icon><ng-md-icon icon="keyboard_control" ></ng-md-icon></md-icon>
+            <input ng-model="user.password_confirm" type="password" placeholder="Password Confirm" ng-required="true">
+        </md-input-container>
+
+
+
+        <md-button type="submit" class="md-raised md-primary" layout-fill>Register</md-button>
+
+
+
+        <md-button type="button" class="md-accent" layout-fill href="/login" target="_self" >Login</md-button>
+        <md-button type="button" class="md-accent" layout-fill href="/#" target="_self" >Forgot Password</md-button>
+    </form>
+</md-content>
+
+
+
+
+</md-content>

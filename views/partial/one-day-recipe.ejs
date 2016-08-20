@@ -1,0 +1,76 @@
+<div layout="row"  ng-controller="oneDayRecipe as oneday" ng-cloak layout-fill>
+
+    <md-content layout="column" layout-fill flex layout-align="center center" style="background-color: #dcedc8 ;" layout-padding layout-margin>
+
+        <!-- SOME SPACE BEFORE PAGE STARTS -->
+        <div layout="row" flex="50"><br><br><br></div>
+
+
+        <!-- ROW #1 : Ingredients Card-->
+        <!-- CARD: for each day ingredient -->
+        <div layout="row" layout-fill layout-align="center center">
+            <md-card  flex="70" flex-xs="100">
+
+                <md-list layout="column" layout-fill flex>
+                    <div layout="row" flex>
+                        <!-- md-switch to show if the current day is DONE (true) -->
+                        <md-switch class="md-primary" flex="40" layout-padding
+                                   ng-cloak ng-model="mData.currentDoneIn30period[mData.currentDayNumber]"
+                                   ng-change="toggleAll(mData.currentDoneIn30period[mData.currentDayNumber])"
+                                   aria-label="Select All"> <!-- ng-model="myDisplay.eachDay[inx].myDone"  -->
+                            <strong>One Day Recipe</strong>
+                        </md-switch>
+
+                        <div flex > </div>
+                        <div flex="50" layout="row" layout-align="end end" layout-padding>
+                            <h5>Total: {{dailyData.dailyCalories}} Calories</h5>
+                            <!-- Random button on the bottom -->
+                            <md-button class="md-fab md-mini md-primary " ng-click="getRandom()" aria-label="get random one day recipe">
+                                <ng-md-icon icon="shuffle" style="fill: white;vertical-align: middle; line-height: 0.1;"></ng-md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+
+                    <md-list-item
+                            ng-repeat="ingr in ingredients"
+                            ng-model="mData.toggleCheckBoxList[$index]"
+                            ng-click="toggleListItem($index)"
+                            layout="row" flex>
+                        <div flex="10" layout-align="center center">
+                            <md-checkbox class="md-primary" ng-model="mData.toggleCheckBoxList[$index]" ng-click="toggleListItem($index)" aria-label="dailyIngredient.ingredient" >
+                            </md-checkbox>
+                        </div>
+
+                        <div flex="70" layout-fill>
+                            <span style="color:#689F38; padding-bottom: 0;" >
+                                {{ingr.amount}} {{ingr.unit}}
+                            </span>
+                            <span style="padding-bottom: 0;">
+                                &nbsp; {{ingr.ingredient}}
+                            </span>
+                            <span style="font-size: x-small; color:darkgreen; margin-top:0;padding-top: 0;">&nbsp;&nbsp;&nbsp;{{ingr.calories}} cals</span>
+
+                        </div>
+                        <div flex="20">
+                            <img ng-init="helperImg = getImageName(ingr.ingredient)" ng-src="{{helperImg}}"  class="md-avatar">
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+
+
+
+                </md-list>
+
+
+
+            </md-card>
+        </div> <!-- End of md-card Row -->
+
+
+
+
+    </md-content>
+
+
+
+</div>

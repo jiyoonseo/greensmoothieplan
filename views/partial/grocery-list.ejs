@@ -1,0 +1,89 @@
+<div ng-controller="myGListController as myGctrl" style="min-width: 100%;" ng-cloak flex>
+
+
+    <md-content layout="column" flex layout-align="center center" style="background-color: #dcedc8 ;">
+
+
+
+        <!-- chip in toolbar-->
+        <md-toolbar layout="row" layout-sm="column" layout-xs="column" class="md-primary md-hue-3" flex
+                    layout-align="center center" layout-align-xs="center center" layout-padding layout-margin>
+            <!--<div flex="10" flex-xs="0"></div>-->
+            <h2>Grocery List from :</h2>
+            <div layout="row">
+                <div class="md-primary md-hue-2  md-raised" ng-repeat="rDay in retrievedDays">
+                    Day {{rDay}}<span ng-if="!$last">, </span> &nbsp;
+                </div>
+
+
+            </div>
+            <md-button class="md-raised " ng-click="changeDaySelections()">
+                Change Selections
+            </md-button>
+
+        </md-toolbar>
+
+
+
+        <!-- Calculated Result : Grocery LIST -->
+        <div layout="column" layout-fill flex   layout-align="center center" ng-if="tempTotalCal" >
+
+            <!-- ALERT PLACE-->
+            <div layout="column" flex layout-margin style="min-width: 80%; ">
+                <uib-alert close="closeAlert($index)"
+                           ng-repeat="alert in loginAlerts"
+                           type="{{alert.type}}"
+                           >
+                    {{alert.msg}}
+                </uib-alert>
+            </div>
+
+
+
+            <md-card style="min-width: 80%; ">
+                <div layout="column" layout-align="center center">
+                    <!--<b ng-repeat="n in retrievedDays">Day {{n}} <i ng-if="!$last">, </i></b>-->
+                    <br>
+                    Total Calories: {{tempTotalCal}}
+                    <br>
+                    Total Number of Items: {{groceryList['index'].length}}
+                    <br>
+
+                </div>
+
+                <md-list layout="column" layout-padding>
+                    <md-list-item layout="row" ng-repeat="ingredient in groceryList.index" flex>
+
+                        <div flex="10" layout="row" layout-align="end end" >
+                            <md-checkbox flex class="md-accent" md-model="hi" aria-label="aria-checkbox">
+                            </md-checkbox>
+                        </div>
+
+
+                        <div flex="70" layout="row">
+                            <span style="color:#689F38; padding-bottom: 0;" >
+                                {{groceryList[ingredient].amount}} &nbsp;{{groceryList[ingredient].unit}}
+                            </span>
+                            <span style="padding-bottom: 0;">
+                                &nbsp;&nbsp;{{ingredient}}
+                            </span>
+
+
+                        </div>
+
+
+                        <div flex="15" layout="row" layout-align="center end">
+                            <img ng-init="helperImg = getImageName(ingredient)" ng-src="{{helperImg}}"  class="md-avatar" aria-label="image of {{helperImg}}">
+                        </div>
+
+                        <md-divider  ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-card>
+        </div>
+
+
+
+
+    </md-content>
+</div>

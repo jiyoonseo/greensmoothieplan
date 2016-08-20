@@ -1,0 +1,76 @@
+<md-content ng-controller="login" layout="column" layout-fill class="md-inline-form">
+    <h2> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+
+    <form ng-submit="login(email, password)"  layout="column" layout-padding layout-margin>
+
+        <md-input-container class="md-block">
+            <!-- Use floating placeholder instead of label -->
+            <md-icon> <ng-md-icon icon="email" ></ng-md-icon> </md-icon>
+            <input ng-model="email" type="email" placeholder="Username (Email)" ng-required="true">
+        </md-input-container>
+
+
+
+        <md-input-container class="md-block">
+            <label>Password</label>
+            <md-icon><ng-md-icon icon="keyboard_control" ></ng-md-icon></md-icon>
+            <input ng-model="   password" type="password" ng-required="true">
+        </md-input-container>
+
+
+
+        <md-button type="submit" class="md-raised md-primary"  >Submit</md-button>
+
+
+        <md-button type="button" class="md-accent md-hue-3"  href="/register" target="_self" style="color: #f00;">Register</md-button>
+
+
+        <!-- Passport-Facebook -->
+        <md-button type="button" href="/auth/facebook" target="_self" layout="column"  class="md-primary">
+            <div layout="row" layout-fill layout-align="center center">
+                Log In with Facebook  &nbsp; | &nbsp; <ng-md-icon icon="facebook" style=" vertical-align: middle; line-height: 1;"></ng-md-icon>
+            </div>
+        </md-button>
+
+
+        <!-- Passport Twitter -->
+        <md-button type="button" href="/auth/twitter" target="_self" class="md-primary" >
+            <div layout="row" layout-align="center center">
+                <div flex></div>
+                <div flex="20" layout="row" layout-align="center center" >
+                    <span >Log In with Twitter</span>
+                    <span flex>&nbsp; | &nbsp;</span>
+                    <span>
+                        <ng-md-icon icon="twitter" style=" vertical-align: middle; line-height: 1;"></ng-md-icon>
+                    </span>
+                </div>
+                <div flex></div>
+            </div>
+        </md-button>
+
+
+        <!-- google-plus -->
+        <md-button type="button" href="/auth/google-plus" target="_self" layout="column"  class="md-primary">
+            <div layout="row" layout-fill layout-align="center center">
+                Log In with Google &nbsp; | &nbsp; <ng-md-icon icon="google-plus" style=" vertical-align: middle; line-height: 1;"></ng-md-icon>
+            </div>
+        </md-button>
+
+
+        <!-- linkedIn -->
+        <md-button type="button" href="/auth/linkedin" target="_self" layout="column"  class="md-primary">
+            <div layout="row" layout-fill layout-align="center center">
+                Log In with LinkedIn &nbsp; | &nbsp; <ng-md-icon icon="linkedin" style=" vertical-align: middle; line-height: 1;"></ng-md-icon>
+            </div>
+        </md-button>
+
+
+        <md-button type="button" class="md-accent md-hue-3"  href="/register" target="_self" >Log In with Instagram</md-button>
+        <!--<input class="btn btn-success btn-lg btn-block" type="submit" value="Login">-->
+
+
+    </form>
+
+
+
+</md-content>

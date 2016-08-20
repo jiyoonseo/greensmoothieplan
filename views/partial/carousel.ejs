@@ -1,0 +1,32 @@
+<div layout="row" class="no-float" layout-fill layout-margin ng-controller="gsCarousel as carousel" ng-cloak>
+
+    <div layout="column" layout-fill id="homebackground" layout-margin layout-padding>
+
+        <div flex></div>
+        <h1 layout="row" flex layout-align="center end" layout-margin layout-padding>Green Smoothie Plan</h1>
+        <div>
+            <hr> <!--<md-divider ></md-divider> -->
+        </div>
+        <div layout="column" flex layout-align="start center">
+
+            <h3>The next solution for your diet plan!</h3>
+            <md-list>
+                <md-list-item id="caroHome" ng-repeat="marketing in marketingPhrase">
+                    <ng-md-icon style="fill:white; " icon="{{marketing.icon}}"></ng-md-icon>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span style="font-size: medium" id="textShadow">{{marketing.title}}</span>
+                </md-list-item>
+            </md-list>
+
+            <div >
+                <md-button class="md-primary md-raised"
+                           href="/green-smoothie-plan/"  >
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Start 30 Day Plan! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                </md-button>
+            </div>
+
+        </div>
+        <div flex></div>
+
+    </div>
+</div>

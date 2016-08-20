@@ -1,0 +1,229 @@
+html, body {
+    font-family: 'Raleway', 'Ubuntu', 'Lato', sans-serif;
+}
+#homebackground{
+    background:
+            linear-gradient(
+                    rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.7)
+            ),
+            url("../images/green-smoothie_2.jpg");
+    background-attachment: fixed;
+    background-size: 100% 100%, cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    text-align: center;
+
+}
+
+#homebackground>h1,#homebackground>h2,#homebackground>div>h3,#homebackground>h4,#homebackground>h5{
+    color: #f4ff81;
+    text-shadow: 1px 1px 1px #000,
+    3px 3px 5px black;
+}
+
+div>hr{
+    border-top-color: #7CB342;
+    max-width: 80%;
+}
+
+ul>li{
+    color: whitesmoke;
+    font-size: medium;
+}
+
+#textShadow{
+    text-shadow: 1px 1px 1px #000,
+    3px 3px 5px black;
+}
+
+md-list-item md-divider {
+    background-color:  #efefef;
+    width: 80%;
+    margin-left: 10%;
+}
+
+/* MUST INCLUDE THIS TO CLOAK PROPERLY */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+
+#caroHome {
+    color: whitesmoke;
+}
+
+
+#frontdoor>h1, #frontdoor>h2, #frontdoor>h3, #frontdoor>h4, #frontdoor>h5, #frontdoor>h6{
+    color: #f4ff81;
+    text-shadow: 1px 1px 1px #000,
+    3px 3px 5px black;
+}
+
+
+.calendarDay{
+    position: relative;
+    width: 100%; /* for IE 6 */
+}
+
+.calendarDay>h6{
+    position: absolute;
+    top: 200px;
+    left: 0;
+    width: 100%;
+}
+
+
+
+#homebackground .header-content {
+    position: relative;
+    width: 100%;
+    padding: 100px 15px;
+    text-align: center;
+    color: #fff;
+}
+
+#makefixed {
+    position: relative;
+    min-height: inherit;
+}
+
+
+#gsNav{
+    position: fixed;
+}
+
+
+/*test: #te*/
+#te {
+    display: block;
+
+    background-image: url('../images/green-smoothie_4.jpg');
+    background-size: 100% ;
+    background-repeat: no-repeat;
+    height: inherit;
+    color: #fff;
+    text-align: center;
+
+}
+
+/*Time Element START*/
+time.icon
+{
+    font-size: 1em; /* change icon size */
+    display: block;
+    position: relative;
+    width: 7em;
+    height: 7em;
+    background-color: #fff;
+    margin: 2em auto;
+    border-radius: 0.6em;
+    box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: rotate(0deg) skewY(0deg);
+    -webkit-transform-origin: 50% 10%;
+    transform-origin: 50% 10%;
+}
+
+time.icon *
+{
+    display: block;
+    width: 100%;
+    font-size: 1em;
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+}
+
+time.icon strong
+{
+    position: absolute;
+    top: 0;
+    padding: 0.4em 0;
+    color: #fff;
+    background-color: #7CB342;
+    border-bottom: 1px dashed #689F38;
+    box-shadow: 0 2px 0 #7CB342;
+}
+
+time.icon em
+{
+    position: absolute;
+    bottom: 0.3em;
+    color: #8BC34A;
+}
+
+time.icon span
+{
+    width: 100%;
+    font-size: 2.8em;
+    letter-spacing: -0.05em;
+    padding-top: 0.8em;
+    color: #2f2f2f;
+}
+
+/*
+time.icon:hover, time.icon:focus
+{
+    -webkit-animation: swing 0.6s ease-out;
+    animation: swing 0.6s ease-out;
+}
+*/
+@-webkit-keyframes swing {
+    0%   { -webkit-transform: rotate(0deg)  skewY(0deg); }
+    20%  { -webkit-transform: rotate(12deg) skewY(4deg); }
+    60%  { -webkit-transform: rotate(-9deg) skewY(-3deg); }
+    80%  { -webkit-transform: rotate(6deg)  skewY(-2deg); }
+    100% { -webkit-transform: rotate(0deg)  skewY(0deg); }
+}
+
+@keyframes swing {
+    0%   { transform: rotate(0deg)  skewY(0deg); }
+    20%  { transform: rotate(12deg) skewY(4deg); }
+    60%  { transform: rotate(-9deg) skewY(-3deg); }
+    80%  { transform: rotate(6deg)  skewY(-2deg); }
+    100% { transform: rotate(0deg)  skewY(0deg); }
+}
+/*Time Element END*/
+
+/* CENTER DISPLAY*/
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+
+}
+
+/*icon color setting*/
+ng-md-icon {
+    fill: #689F38;
+    display: block !important;
+}
+
+
+/* bakground color*/
+html, body {
+    background-color: #efefef;
+}
+
+
+/* Bootstrap custom style */
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+/* prevent spaces of .container-fluid  */
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.full-height {
+    height: 100%;
+}

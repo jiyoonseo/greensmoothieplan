@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+
+    <% include partial/head.ejs %>
+    <meta name="viewport" content="width=device-width" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+
+    <base href="/"/>
+
+
+    <script>
+        /** Google Analytics
+         */
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-61278388-2', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+</head>
+<body ng-app="app"  ng-controller="appCtrl" ng-cloak >
+
+<!-- facebook Login/Logout Button SDK -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=901065133337648";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<% include partial/nav.ejs %>
+
+<!-- Some Space after NavBar -->
+<div show-gt-md hide-xs hide-sm  >    <br><br><br>    </div>
+
+
+<!-- include partial/adsense.ejs  -->
+
+
+<!-- DO SOMETHING HERE -->
+<!--<div layout="row" layout-align="center center" layout-fill>-->
+    <!--<div ng-view layout="column" layout-align="center center" layout-fill>-->
+
+    <!--</div>-->
+<!--</div>-->
+<div ng-view class="container-fluid"></div>
+
+<!--  FOOTER -->
+<% include partial/footer.ejs %>
+
+
+<% include partial/func.ejs %>
+<!-- Loading root layout.js file to connect Angular stable -->
+<script src="/js/layout.js"></script>
+
+<script src="/js/nav.js"></script>
+<script src="/js/carousel.js"></script>
+<script src="/js/partial/green-smoothie-plan.js"></script>
+<script src="/js/partial/one-day-recipe.js"></script>
+<script src="/js/partial/grocery-list.js"></script>
+<script src="/js/partial/grocery-list-summary.js"></script>
+<script src="/js/partial/login.js"></script>
+<script src="/js/partial/register.js"></script>
+<script src="/js/partial/footer.js"></script>
+<script src="/js/partial/user-account.js"></script>
+<script src="/js/partial/404.js"></script>
+
+</body>
+</html>

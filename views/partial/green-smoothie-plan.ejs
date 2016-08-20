@@ -1,0 +1,175 @@
+<div ng-controller="gs30controller as gs30" ng-cloak >
+
+    <md-content style="background-color: #dcedc8;">
+        <br>
+        <!-- SOME SPACE BEFORE PAGE STARTS -->
+
+
+        <!-- ROW #1 : Calendar, Date Chooser, 4 buttons-->
+        <div class="row">
+
+            <div class="col-md-4">
+                <!-- //click this calendar to customize -->
+                <time datetime class="icon" ng-click="showAdvanced()">
+                    <strong ng-bind="getDayName(mData.customDates[mData.currentDayNumber].getDay() )" ></strong> <!-- Day {{mData.currentDayNumber+1}} -->
+                    <span ng-bind="mData.customDates[mData.currentDayNumber].getDate()"> </span>
+                    <em ng-bind="getMonthName( mData.customDates[mData.currentDayNumber].getMonth() )"></em>
+                </time>
+            </div>
+            <div class="col-md-7">
+                <md-select
+                        placeholder="Day {{mData.currentDayNumber+1}} : {{getMonthNameThree( mData.customDates[mData.currentDayNumber].getMonth() )}}
+                        {{mData.customDates[mData.currentDayNumber].getDate()}}"
+
+                        ng-model="selectedDay"  ng-change="selectDay(selectedDay)"
+                        style="text-align: center; font-size:x-large; " >
+                    <md-option  ng-value="day" ng-repeat="day in mData.initialDays">
+                        Day {{day}} : {{getMonthNameThree( mData.customDates[day-1].getMonth() )}} {{mData.customDates[day-1].getDate()}}
+                    </md-option>
+                </md-select>
+
+                <!-- buttons; 1.addToCart 2.cartView 3.favorite 4.rateWithStars  -->
+                <div layout="row" layout-align="center center">
+                    <md-button ng-class="ngBtnStyle.d1" ng-click="clickAddToCartButton()" aria-label="Add This List to Cart and View Shopping Summary">
+                        <ng-md-icon icon="{{addToCartButton}}" style="fill: white;vertical-align: middle; line-height: 0.1;"></ng-md-icon>
+                    </md-button>
+
+                    <md-button ng-class="ngBtnStyle.d2" ng-click="clickShowCartSummaryBtn()" aria-label="View Shopping List" style="display:inline;" >
+                        <ng-md-icon icon="{{showGroSummary}}" style="fill: white; vertical-align: middle; line-height: 0.1;" ></ng-md-icon>
+                    </md-button>
+
+                    <a ng-href="grocery-list?{{s}}" >
+                        <md-button ng-class="ngBtnStyle.d3"  ng-click="sendFinGList()" aria-label="View Shopping List" style="display:inline;" >
+                            <ng-md-icon icon="shopping_cart" style="fill: white; vertical-align: middle; line-height: 0.1;" ></ng-md-icon>
+                        </md-button>
+                    </a>
+
+                    <md-button ng-class="ngBtnStyle.d4" aria-label="Set My Favoriate" style="display:inline;" >
+                        <ng-md-icon icon="favorite_outline" style="fill: white; vertical-align: middle; line-height: 0.1;" ></ng-md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROW #2 : Toggle Bar-->
+        <!-- In this Section: <Grocery Shopping List Summary>
+            1. chips
+            2. Show Shopping List (Later) -->
+        <div layout="column" ng-init="showShoppingListSummary = false;" ng-show="showShoppingListSummary"  >
+            <md-toolbar class="md-primary md-hue-3 " layout="row">
+
+                <i style="font-size: medium; color: #33691E; " >Grocery Shopping List Summary:</i>
+                <div flex></div>
+                <div >
+                    <md-button class="md-fab md-accent md-mini" ng-click="collapseGroceryList()" aria-label="Collapse View" style="display:inline;" >
+                        <ng-md-icon icon="close" style="fill: #33691E; vertical-align: middle; line-height: 0.1;" ></ng-md-icon>
+                    </md-button>
+                </div>
+
+            </md-toolbar>
+
+            <md-toolbar class="md-primary md-hue-3" layout="row">
+
+                <div flex></div>
+                <div flex="70">
+                    <md-chips ng-model="mData.addedCartListDays"
+                              md-transform-chip="transformChip($chip)"
+                              md-require-match="true"
+                              md-on-remove="removeCartList($chip)">
+                        <md-autocomplete md-search-text="searchText" md-items="dayListItem in mData.initialDays" md-item-text="dayListItem">
+                            <span>Day <strong>{{dayListItem}}</strong></span>
+                        </md-autocomplete>
+
+                        <md-chip-template>
+                            <span>Day </span>
+                            <strong>{{$chip}}</strong>
+                            <span>
+                                &nbsp;
+                            </span>
+                        </md-chip-template>
+                    </md-chips>
+                </div>
+                <div flex="15">
+                    <a ng-href="grocery-list?{{s}}" >
+                        <md-button class="md-primary md-raised" ng-click="sendFinGList()">
+                            <ng-md-icon icon="shopping_cart"
+                                        style="fill: white; vertical-align: middle; line-height: 0.1; " ></ng-md-icon>
+                            <div>Grocery List</div>
+                        </md-button>
+                    </a>
+                </div>
+                <div flex></div>
+
+            </md-toolbar>
+        </div>
+
+        <!-- Progress Bar (for loading notification) -->
+        <div layout="row" layout-align="center center" ng-init="showCircular = true" ng-if="showCircular == true" >
+            <md-progress-circular md-mode="indeterminate" md-diameter="96"></md-progress-circular>
+        </div>
+
+        <!-- ROW #3 : Ingredients Card-->
+        <!-- CARD: for each day ingredient -->
+        <div layout="row" layout-padding layout-margin ng-if="showCircular == false">
+            <md-card class="col-sm-10 center">
+
+                <md-list>
+                    <div layout="row" layout-align="center center" layout-padding>
+                        <!-- md-switch to show if the current day is DONE (true) -->
+
+                        <md-switch class="md-primary"
+                                   ng-cloak ng-model="mData.currentDoneIn30period[mData.currentDayNumber]"
+                                   ng-change="toggleAll(mData.currentDoneIn30period[mData.currentDayNumber])"
+                                   aria-label="Select All"> <!-- ng-model="myDisplay.eachDay[inx].myDone"  -->
+                            <strong>Day {{mData.currentDayNumber+1}}</strong>
+                        </md-switch>
+
+                        <h5 >Total: {{dailyData.dailyCalories}} Calories</h5>
+                    </div>
+
+                    <md-list-item layout="row"
+                            ng-repeat="dailyIngredient in dailyIngredients"
+                            ng-model="mData.toggleCheckBoxList[$index]"
+                            ng-click="toggleListItem($index)"
+                            >
+
+                        <div flex="10">
+                            <md-checkbox class="md-primary" ng-model="mData.toggleCheckBoxList[$index]" ng-click="toggleListItem($index)" aria-label="dailyIngredient.ingredient" >
+                            </md-checkbox>
+                        </div>
+
+                        <div flex="80">
+                            <span style="color:#689F38;" >
+                                {{dailyIngredient.amount}} {{dailyIngredient.unit}}
+                            </span>
+                            <span >
+                                &nbsp; {{dailyIngredient.ingredient}}
+                            </span>
+                            <span style="font-size: x-small; color:darkgreen; ">&nbsp;&nbsp;&nbsp;{{dailyIngredient.calories}} cals</span>
+
+                        </div>
+                        <div flex="10">
+                            <img ng-init="helperImg = getImageName(dailyIngredient.ingredient)" ng-src="{{helperImg}}"  class="md-avatar">
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+
+
+
+                </md-list>
+            </md-card>
+        </div> <!-- End of md-card Row -->
+
+
+
+    </md-content>
+    <!-- prev & next buttons on the bottom -->
+    <md-button class="md-fab md-primary md-fab-bottom-left" style="position: fixed;" aria-label="get previous day ingredients"
+               ng-click="getPrevDay()" ng-disabled="prevBtnDisable()">
+        <ng-md-icon icon="navigate_before" style="fill: white;vertical-align: middle; line-height: 0.1;"></ng-md-icon>
+    </md-button>
+    <md-button class="md-fab md-primary md-fab-bottom-right" style="position: fixed;" aria-label="get next day ingredients"
+               ng-click="getNextDay()" ng-disabled="nextBtnDisable()">
+        <ng-md-icon icon="navigate_next" style="fill: white;vertical-align: middle; line-height: 0.1;"></ng-md-icon>
+    </md-button>
+</div>

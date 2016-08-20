@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="MeanStack" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$USER_HOME$/webDev/MEAN-stack" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$USER_HOME$/webDev/MEAN-stack" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
